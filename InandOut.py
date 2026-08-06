@@ -10,18 +10,74 @@ class LinkedList:
 
     def insert_at_beginning(self, data):
         new_node = Node(data)
-        if self.head is None:
-            self.head = new_node
-        else:
-            new_node.next = self.head
-            self.head = new_node
-    
+        new_node.next = self.head
+        self.head = new_node
+
     def insert_at_end(self, data):
         new_node = Node(data)
+
         if self.head is None:
             self.head = new_node
             return
+        
+
         temp = self.head
-        while not temp.next:
+        while temp.next:
             temp = temp.next
+
         temp.next = new_node
+
+    def insert_at_position(self, data, position):
+        new_node = Node(data)
+
+        if position == 0:
+            new_node.next = self.head
+            self.head = new_node
+            return
+
+        temp = self.head
+        for i in range(position - 1):
+            if temp is None:
+                print("Position out of range")
+                return
+            temp = temp.next
+
+        if temp is None:
+            print("Position out of range")
+            return
+
+        new_node.next = temp.next
+        temp.next = new_node
+
+    def display(self):
+        temp = self.head
+        elements = []
+
+        while temp:
+            elements.append(str(temp.data))
+            temp = temp.next
+
+        if elements:
+            print(" -> ".join(elements))
+        else:
+            print("List is empty")
+
+
+# Create Linked List object
+ll = LinkedList()
+
+# Insert elements
+ll.insert_at_end(10)
+ll.insert_at_end(20)
+ll.insert_at_end(30)
+
+print("Original List:")
+ll.display()
+
+ll.insert_at_beginning(5)
+print("After inserting 5 at beginning:")
+ll.display()
+
+ll.insert_at_position(15, 2)
+print("After inserting 15 at position 2:")
+ll.display()
