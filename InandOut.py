@@ -62,6 +62,26 @@ class LinkedList:
         else:
             print("List is empty")
 
+    def delete_head(self):
+        if self.head is None:
+            return
+
+        self.head = self.head.next
+
+    def delete_tail(self):
+        if self.head is None:
+            return
+
+        if self.head.next is None:
+            self.head = None
+            return
+
+        current = self.head
+        while current.next.next is not None:
+            current = current.next
+
+        current.next = None
+
 
 # Create Linked List object
 ll = LinkedList()
@@ -70,6 +90,7 @@ ll = LinkedList()
 ll.insert_at_end(10)
 ll.insert_at_end(20)
 ll.insert_at_end(30)
+ll.insert_at_end(40)
 
 print("Original List:")
 ll.display()
@@ -80,4 +101,12 @@ ll.display()
 
 ll.insert_at_position(15, 2)
 print("After inserting 15 at position 2:")
+ll.display()
+
+ll.delete_head()
+print("After deleting at beginning : ")
+ll.display()
+
+ll.delete_tail()
+print("After deleting at end : ")
 ll.display()
