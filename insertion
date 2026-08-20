@@ -1,4 +1,3 @@
-     
     new_node.next = self.head 
     temp.next = new_node    
     self.head = new_node
