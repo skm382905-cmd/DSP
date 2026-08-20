@@ -1,3 +1,14 @@
-    new_node.next = self.head 
-    temp.next = new_node    
+New node: - 
+if self.head is None:
+        self.head = new_node
+        new_node.next = self.head
+        return
+
+
+    temp = self.head
+    while temp.next != self.head: 
+        temp = temp.next
+        
+    new_node.next = self.head     
+    temp.next = new_node           
     self.head = new_node
